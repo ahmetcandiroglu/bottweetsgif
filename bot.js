@@ -7,9 +7,10 @@ const tweet = require('./src/tweet');
 const T = new Twit(twit_config);
 
 let user_stream = T.stream('user');
-console.log("User stream has started..");
+console.log("User stream has started\n----------------------");
 
 user_stream.on('follow', followed);
+
 
 function followed(event) {
     const screen_name = event.source.screen_name;
@@ -38,4 +39,21 @@ function followed(event) {
             console.log('An error occurred..');
         });
 
+}
+
+function tweet_random_number(){
+
+    let number = Math.floor( Math.random() * 100 );
+
+    const tweet_params = {
+        status: number + " #bottweetsgifs"
+    };
+
+    tweet.post_status(T, tweet_params)
+        .then(data => {
+            console.log('Tweet has been posted..');
+        })
+        .catch(err => {
+            console.log('Tweet could not posted!', err);
+        });
 }
