@@ -7,7 +7,7 @@ This is a Twitter bot which tweets gifs on various user interactions.
 You can view and test the bot here 
 
 ```
-www.twitter.com/bottweetsgif
+
 ```
 
 ### About bot
