@@ -53,7 +53,7 @@ module.exports.get_trending_topic = function (twit, tweet_params) {
                     reject(err);
                 }
                 else{
-                    const most_popular_topic = data[0].trends[0].name.replace('#', '');
+                    const most_popular_topic = data[0].trends[0].name;
                     let date = data[0].created_at.split('T')[0];
 
                     date = date.split('-');

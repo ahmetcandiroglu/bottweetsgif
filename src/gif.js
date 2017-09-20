@@ -4,7 +4,7 @@ const http = require('http');
 const request = require('request');
 const giphy_config = require('./config').giphy_config;
 
-module.exports.search_gif = function(search_key, search_limit = 25) {
+module.exports.search_gif = function(search_key, random, search_limit = 25) {
 
     return new Promise( (resolve, reject) => {
         console.log(`Searching for ${search_key} begins..`);
@@ -15,7 +15,14 @@ module.exports.search_gif = function(search_key, search_limit = 25) {
 
         axios.get(url)
             .then(response => {
-                let index = 0;
+                let index;
+                if(random){
+                    index  = Math.floor( Math.random() * search_limit);
+                }
+                else{
+                    index = 0;
+                }
+
                 const gif_url = response.data.data[index].images.downsized.url;
 
                 resolve(gif_url);
