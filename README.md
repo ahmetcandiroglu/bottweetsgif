@@ -7,13 +7,13 @@ This is a Twitter bot which tweets gifs on various user interactions.
 You can view and test the bot here 
 
 ```
-
+www.twitter.com/bottweetsgif
 ```
 
 ### About bot
 
 * Tweets a gif to new follower
-
+* Tweets a gif about most trending topic daily
 
 ## Built With
 
