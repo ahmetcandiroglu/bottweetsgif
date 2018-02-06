@@ -5,3 +5,7 @@ node_modules/
 .idea/
 
 src/config.js
+
+package.sublime-workspace
+*.gif
+src/config.js

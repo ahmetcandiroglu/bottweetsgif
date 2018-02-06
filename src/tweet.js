@@ -67,3 +67,24 @@ module.exports.get_trending_topic = function (twit, tweet_params) {
         );
     });
 };
+
+module.exports.get_tweets = function (twit, tweet_params) {
+
+    return new Promise( (resolve, reject) => {
+
+        twit.get(
+            'statuses/user_timeline',
+            tweet_params,
+            (err, data, response) => {
+                if(err){
+                    reject(err);
+                }
+                else{
+                    resolve(data);
+                }
+            }
+        );
+
+
+    });
+};

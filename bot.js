@@ -1,6 +1,7 @@
 const Twit = require('twit');
-const twit_config = require('./src/config').twit_config;
+const schedule = require('node-schedule');
 
+const twit_config = require('./src/config').twit_config;
 const gif = require('./src/gif');
 const tweet = require('./src/tweet');
 
@@ -11,8 +12,7 @@ console.log("User stream has started..\n");
 user_stream.on('follow', followed);
 
 console.log("Daily gif stream has started..");
-daily_trending_gif();
-setInterval(daily_trending_gif, 1000*60*60*24);
+var j = schedule.scheduleJob('00 18 * * *', daily_trending_gif);
 
 function daily_trending_gif(){
     console.log('Posting today\'s gif..');
@@ -33,7 +33,7 @@ function daily_trending_gif(){
 
             let tweet_status = `Today's gif #bottweetsgifs ${response.topic}`;
 
-            post_tweet(gif_search_key, tweet_status, 'daily', false);
+            post_tweet(gif_search_key, tweet_status, 'daily');
 
         });
 }
@@ -46,7 +46,7 @@ function followed(event) {
 }
 
 function post_tweet(gif_search_key, status, gif_file_name, random = false){
-    gif.search_gif(gif_search_key, random)
+    gif.search_gif(gif_search_key, random, 10)
     .then(gif_url => {
         return gif.download_gif(gif_url, gif_file_name);
     })
